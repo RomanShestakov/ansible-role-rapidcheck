@@ -1,0 +1,7 @@
+# file: ansible-role-rapidcheck/defaults/main.yml
+
+rc_repo_url: https://github.com/emil-e/rapidcheck.git
+rc_version: master
+rc_tmp: /tmp/rc
+rc_build_dir: /tmp/rc-build
+rc_install_dir: /usr/local
