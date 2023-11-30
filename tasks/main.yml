@@ -3,13 +3,13 @@
 - name: RC | check if RC is already installed
   stat:
     path: "{{ rc_install_dir }}/include/rapidcheck"
-  register: rc_exists
+  #register: rc_exists
 
 - name: RC | get from git repository
   git: repo="{{ rc_repo_url }}"
        dest="{{ rc_tmp }}"
        version="{{ rc_version }}"
-  when: not rc_exists.stat.exists
+  #when: not rc_exists.stat.exists
   # register: rc_downloaded
 
 - name: RC | Make build folder
@@ -19,7 +19,7 @@
 
 - name: RC | cmake
   become: true
-  command: chdir={{ rc_build_dir }} cmake -DCMAKE_INSTALL_PREFIX={{ rc_install_dir }} {{ rc_tmp }}
+  command: chdir={{ rc_build_dir }} cmake -DRC_ENABLE_GTEST=ON -DCMAKE_INSTALL_PREFIX={{ rc_install_dir }} {{ rc_tmp }}
   # when: rc_downloaded.changed
 
 - name: RC | make
